@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>JS Bin</title>
+    </head>
+    <body>
+        <my-button label="wxf"></my-button>
+        <!-- host表示元素本身 -->
+        <template id="buttonTemplate">
+            <button class="button"></button>
+        </template>
+
+        <script>
+            class MyButton extends HTMLElement {
+                constructor() {
+                    super();
+                    var shadow = this.attachShadow({ mode: "closed" }); // open
+
+                    var templateElem = document.getElementById("buttonTemplate");
+                    var content = templateElem.content.cloneNode(true);
+                    this.$button = content.querySelector(".button");
+                    this.$button.addEventListener("click", function() {
+                        console.log("呵呵哒");
+                    });
+                    shadow.appendChild(content);
+                    this.render();
+                }
+
+                get label() {
+                    return this.getAttribute("label");
+                }
+
+                set label(value) {
+                    this.setAttribute("label", value);
+                }
+
+                static get observedAttributes() {
+                    return ["label"];
+                }
+
+                attributeChangedCallback(name, oldVal, newVal) {
+                    this.render();
+                }
+
+                render() {
+                    this.$button.innerHTML = this.label;
+                }
+            }
+            window.customElements.define("my-button", MyButton);
+        </script>
+
+        <script>
+            setTimeout(() => {
+                const element = document.querySelector("my-button");
+                // element.setAttribute("label", "ysp");
+                element.label = "ysp"; // 没有设置set函数不能直接设置进去
+            }, 4000);
+        </script>
+    </body>
+</html>

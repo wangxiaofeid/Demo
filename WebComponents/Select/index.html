@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <my-dropdown
+            value="option2"
+            options='[{ "label": "Option 1", "value": "option1" }, { "label": "Option 2", "value": "option2" } ]'
+        ></my-dropdown>
+        <script src="./button.js"></script>
+        <script src="./index.js"></script>
+        <script>
+            document
+                .querySelector("my-dropdown")
+                .addEventListener("onChange", event => console.log(event, event.detail));
+        </script>
+    </body>
+</html>

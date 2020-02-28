@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>JS Bin</title>
+    </head>
+    <body>
+        <my-button label="Click Me"></my-button>
+        <!-- host表示元素本身 -->
+        <template id="buttonTemplate">
+            <button class="button">点击</button>
+        </template>
+
+        <script>
+            class MyButton extends HTMLElement {
+                constructor() {
+                    super();
+                    this._shadowRoot = this.attachShadow({ mode: "open" }); // open
+                    var templateElem = document.getElementById("buttonTemplate");
+                    this._shadowRoot.appendChild(templateElem.content.cloneNode(true));
+
+                    this.$button = this._shadowRoot.querySelector(".button");
+                    this.$button.addEventListener("click", function() {
+                        console.log("呵呵哒");
+                        // this.onClick("上传呵呵哒");
+                        this.dispatchEvent(
+                            new CustomEvent("onClick", {
+                                detail: "上传呵呵哒",
+                            })
+                        );
+                    });
+                }
+                get label() {
+                    return this.getAttribute("label");
+                }
+                render() {
+                    this.$button.innerHTML = this.label;
+                }
+            }
+            window.customElements.define("my-button", MyButton);
+        </script>
+
+        <script>
+            document.querySelector("my-button").addEventListener("click", e => {
+                console.log(e);
+            });
+        </script>
+    </body>
+</html>
