@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Layout, Menu, Breadcrumb, Avatar } from "antd";
+import { Layout, Menu, Icon, Breadcrumb, Avatar } from "antd";
 import { withRouter } from "react-router";
 import { inject, observer } from "mobx-react";
 import _ from "lodash";
@@ -28,6 +28,7 @@ export default class App extends Component {
             return (
                 <Menu.Item key={item.key}>
                     <Link to={item.link}>
+                        {item.icon && <Icon type={item.icon} />}
                         <span>{item.label}</span>
                     </Link>
                 </Menu.Item>
@@ -38,6 +39,7 @@ export default class App extends Component {
                     key={item.key}
                     title={
                         <span>
+                            {item.icon && <Icon type={item.icon} />}
                             <span>{item.label}</span>
                         </span>
                     }
@@ -66,8 +68,13 @@ export default class App extends Component {
                 <Layout>
                     <Header style={{ background: "#fff", padding: 0 }}>
                         <div className="fr" style={{ marginRight: 20 }}>
-                            <Avatar style={{ backgroundColor: "#87d068" }} />
+                            <Avatar style={{ backgroundColor: "#87d068" }} icon="user" />
                         </div>
+                        <Icon
+                            className="trigger"
+                            type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
+                            onClick={this.toggleCollapsed}
+                        />
                     </Header>
                     <Content
                         style={{

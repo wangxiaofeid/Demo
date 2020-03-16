@@ -9,31 +9,40 @@ export class AppStore {
 
     menus = [
         {
-            label: "Formily",
+            label: "一级目录1",
             key: "1",
+            icon: "desktop",
             children: [
                 {
-                    label: "Schema",
-                    key: "11",
-                    link: "/Schema",
+                    label: "二级页面",
+                    link: "/demo1",
+                    key: "3",
                 },
             ],
         },
         {
-            label: "Antd",
+            label: "一级目录2",
             key: "2",
-            children: [
-                {
-                    label: "List",
-                    key: "11",
-                    link: "/Antd/List",
-                },
-            ],
+            icon: "appstore",
+            link: "/demo2",
         },
         {
-            label: "Corn",
+            label: "一级目录3",
             key: "3",
-            link: "/Corn",
+            icon: "appstore",
+            children: [
+                {
+                    label: "二级页面",
+                    key: "4",
+                    children: [
+                        {
+                            label: "三级页面",
+                            link: "/demo",
+                            key: "5",
+                        },
+                    ],
+                },
+            ],
         },
     ];
 
