@@ -34,7 +34,7 @@
         "@xiaofei.wang/react-cron": "^1.0.1",
         "antd": "^4.0.2",
         "axios": "^0.18.0",
-        "lodash": "^4.17.11",
+        "lodash": "^4.17.19",
         "mobx": "^5.0.3",
         "mobx-react": "^5.2.3",
         "normalize.css": "^8.0.0",
