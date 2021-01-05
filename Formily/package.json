@@ -33,7 +33,7 @@
         "@formily/antd-components": "^1.0.5",
         "@xiaofei.wang/react-cron": "^1.0.1",
         "antd": "^4.0.2",
-        "axios": "^0.18.0",
+        "axios": "^0.21.1",
         "lodash": "^4.17.11",
         "mobx": "^5.0.3",
         "mobx-react": "^5.2.3",
