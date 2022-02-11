@@ -1,0 +1,31 @@
+{
+    "name": "@xiaofei.wang/class",
+    "version": "1.0.5",
+    "description": "",
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "rimraf lib && echo Using Babel && babel --version && babel src --out-dir lib"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wangxiaofeid/react-cron.git"
+    },
+    "keywords": [
+        "Class",
+        "babel"
+    ],
+    "author": "xiaofei.wang",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/wangxiaofeid/react-cron/issues"
+    },
+    "homepage": "https://github.com/wangxiaofeid/react-cron#readme",
+    "peerDependencies": {},
+    "devDependencies": {
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.0.1",
+        "@babel/plugin-proposal-class-properties": "^7.0.0",
+        "@babel/plugin-proposal-decorators": "^7.0.0",
+        "@babel/preset-env": "^7.0.0"
+    }
+}

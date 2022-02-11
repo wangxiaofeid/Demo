@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { Layout, Menu, Icon, Breadcrumb, Avatar } from "antd";
 import { withRouter } from "react-router";
 import { inject, observer } from "mobx-react";
 import _ from "lodash";
+import { Provider, KeepAlive } from "react-keep-alive";
 import Router from "./router";
+import Simple from "./pages/Simple";
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -23,7 +25,7 @@ export default class App extends Component {
         });
     };
 
-    renderMenu = item => {
+    renderMenu = (item) => {
         if (item.link) {
             return (
                 <Menu.Item key={item.key}>
@@ -58,44 +60,51 @@ export default class App extends Component {
             defaultSelectedKeys = pathname.split("/");
         }
         return (
-            <Layout className="app-layout">
-                <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                    <h1 className="logo">后台管理</h1>
-                    <Menu defaultSelectedKeys={defaultSelectedKeys} defaultOpenKeys={[]} mode="inline" theme="dark">
-                        {menus.map(this.renderMenu)}
-                    </Menu>
-                </Sider>
-                <Layout>
-                    <Header style={{ background: "#fff", padding: 0 }}>
-                        <div className="fr" style={{ marginRight: 20 }}>
-                            <Avatar style={{ backgroundColor: "#87d068" }} icon="user" />
-                        </div>
-                        <Icon
-                            className="trigger"
-                            type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-                            onClick={this.toggleCollapsed}
-                        />
-                    </Header>
-                    <Content
-                        style={{
-                            margin: "15px 16px 0",
-                        }}
-                    >
-                        {this.renderBreadcrumb()}
-                        <div
-                            className="inner"
+            <Provider>
+                <Layout className="app-layout">
+                    <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                        <h1 className="logo">后台管理</h1>
+                        <Menu defaultSelectedKeys={defaultSelectedKeys} defaultOpenKeys={[]} mode="inline" theme="dark">
+                            {menus.map(this.renderMenu)}
+                        </Menu>
+                    </Sider>
+                    <Layout>
+                        <Header style={{ background: "#fff", padding: 0 }}>
+                            <div className="fr" style={{ marginRight: 20 }}>
+                                <Avatar style={{ backgroundColor: "#87d068" }} icon="user" />
+                            </div>
+                            <Icon
+                                className="trigger"
+                                type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
+                                onClick={this.toggleCollapsed}
+                            />
+                        </Header>
+                        <Content
                             style={{
-                                padding: 24,
-                                background: "#fff",
-                                minHeight: 280,
-                                marginTop: 15,
+                                margin: "15px 16px 0",
                             }}
                         >
-                            <Router />
-                        </div>
-                    </Content>
+                            {this.renderBreadcrumb()}
+                            <div
+                                className="inner"
+                                style={{
+                                    padding: 24,
+                                    background: "#fff",
+                                    minHeight: 280,
+                                    marginTop: 15,
+                                }}
+                            >
+                                <Router />
+                                <Route path="/simple">
+                                    <KeepAlive name="Simple">
+                                        <Simple />
+                                    </KeepAlive>
+                                </Route>
+                            </div>
+                        </Content>
+                    </Layout>
                 </Layout>
-            </Layout>
+            </Provider>
         );
     }
 
@@ -108,7 +117,7 @@ export default class App extends Component {
         }
         return (
             <Breadcrumb>
-                {find.map(item => (
+                {find.map((item) => (
                     <Breadcrumb.Item key={item.key}>{item.label}</Breadcrumb.Item>
                 ))}
             </Breadcrumb>
@@ -116,7 +125,7 @@ export default class App extends Component {
     };
 
     findUrl = (arr, pathname) => {
-        const find = _.find(arr, i => i.link == pathname);
+        const find = _.find(arr, (i) => i.link == pathname);
         if (find) {
             return [find];
         } else {

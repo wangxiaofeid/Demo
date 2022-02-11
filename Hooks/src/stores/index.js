@@ -38,6 +38,12 @@ export class AppStore {
             icon: "appstore",
             link: "/GoodHook",
         },
+        {
+            label: "单例页面",
+            key: "6",
+            icon: "appstore",
+            link: "/simple",
+        },
     ];
 
     static getInstance() {
@@ -67,7 +73,7 @@ const Stores = {
 /* 当前文件夹下store */
 
 const req = require.context(".", false, /Store$/);
-req.keys().map(key => {
+req.keys().map((key) => {
     const Store = req(key).default;
     const namespace = Store.namespace || key;
     appStore[namespace] = Stores[namespace] = new Store(appStore);
@@ -76,7 +82,7 @@ req.keys().map(key => {
 /* page下store */
 
 const reqPage = require.context("../pages", true, /store$/);
-reqPage.keys().map(key => {
+reqPage.keys().map((key) => {
     const Store = reqPage(key).default;
     const namespace = Store.namespace || key;
     appStore[namespace] = Stores[namespace] = new Store(appStore);

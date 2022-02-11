@@ -11,7 +11,7 @@ const Loading = () => {
 
 export default function SplitComponent(Comp) {
     const LazyComp = React.lazy(Comp);
-    return props => (
+    return (props) => (
         <Suspense fallback={<Loading />}>
             <LazyComp {...props} />
         </Suspense>

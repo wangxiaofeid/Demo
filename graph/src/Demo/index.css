@@ -1,0 +1,29 @@
+.node_type0 circle {
+  fill: #287ef0;
+}
+
+.node_type1 circle {
+  fill: #5262c7;
+}
+
+.node_type2 circle {
+  fill: #00d084;
+}
+
+.node_type3 circle {
+  fill: #00d2c2;
+}
+
+.node.highlight circle {
+  fill: red;
+}
+
+.demo2 .node text {
+  text-anchor: middle;
+  font-size: 12px;
+  fill: #666666;
+}
+
+.tree4 .node.highlight rect {
+  fill: red;
+}
