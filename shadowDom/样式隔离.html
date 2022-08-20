@@ -1,0 +1,42 @@
+<!-- 
+结论：
+1. shadow dom元素所有可以继承的样式都会反馈到shadow dom的元素里面
+2. shadow dom里面所有样式都不会外溢
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                font-size: 20px;
+            }
+            .p {
+                color: #ff9911;
+            }
+            /* #shadow_out {
+                color: #ff9911;
+            } */
+            /* body {
+                color: #ff9911;
+            } */
+        </style>
+    </head>
+    <body>
+        <p class="p">外面p</p>
+        <div id="shadow_out">
+            <div id="shadow"></div>
+        </div>
+        <script>
+            var dom = document.getElementById("shadow");
+            const shadow = dom.attachShadow({ mode: "open" });
+            shadow.innerHTML = `
+              <p class="p">里面的P</p>
+            `;
+        </script>
+    </body>
+</html>
