@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Button } from "antd";
 // import { execute } from "./antlr";
-import { execute } from "./antlr2";
+import { execute } from "./antlrx";
 
 export default function App() {
     const [value, setValue] = useState(undefined);
